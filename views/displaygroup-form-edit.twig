@@ -1,0 +1,37 @@
+{#
+/*
+ * Spring Signage Ltd - http://www.springsignage.com
+ * Copyright (C) 2015 Spring Signage Ltd
+ * (${FILE_NAME})
+ */
+
+#}
+
+{% extends "form-base.twig" %}
+{% import "forms.twig" as forms %}
+
+{% block formTitle %}
+    {% trans "Edit Display Group" %}
+{% endblock %}
+
+{% block formButtons %}
+    {% trans "Help" %}, XiboHelpRender("{{ help }}")  
+    {% trans "Cancel" %}, XiboDialogClose()
+    {% trans "Save" %}, $("#displayGroupEditForm").submit()
+{% endblock %}
+
+{% block formHtml %}
+    <div class="row">
+        <div class="col-md-12">
+            <form id="displayGroupEditForm" class="XiboForm form-horizontal" method="put" action="{{ urlFor("displayGroup.edit", {"id": displayGroup.displayGroupId}) }}">
+                {% set title %}{% trans "Name" %}{% endset %}
+                {% set helpText %}{% trans "The Name for this Display Group" %}{% endset %}
+                {{ forms.text("displayGroup", title, displayGroup.displayGroup , helpText) }}
+
+                {% set title %}{% trans "Description" %}{% endset %}
+                {% set helpText %}{% trans "A short description of this Display Group" %}{% endset %}
+                {{ forms.text("description", title, displayGroup.description, helpText) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,5 +1,5 @@
 INSERT INTO `version` (`app_ver`, `XmdsVersion`, `XlfVersion`, `DBVersion`) VALUES
-('1.7.3', 4, 2, 87);
+('1.8.0-alpha', 4, 2, 120);
 
 INSERT INTO `group` (`groupID`, `group`, `IsUserSpecific`, `IsEveryone`) VALUES
 (1, 'Users', 0, 0),
@@ -89,117 +89,58 @@ INSERT INTO `help` (`HelpID`, `Topic`, `Category`, `Link`) VALUES
 (83, 'DisplayProfile', 'Edit', 'displays_settings.html#edit'),
 (84, 'DisplayProfile', 'Delete', 'displays_settings.html#delete');
 
-INSERT INTO `menu` (`MenuID`, `Menu`) VALUES
-(8, 'Administration Menu'),
-(9, 'Advanced Menu'),
-(2, 'Dashboard'),
-(6, 'Design Menu'),
-(7, 'Display Menu'),
-(5, 'Library Menu'),
-(1, 'Top Nav');
+INSERT INTO `module` (`ModuleID`, `Module`, `Name`, `Enabled`, `RegionSpecific`, `Description`, `ImageUri`, `SchemaVersion`, `ValidExtensions`, `PreviewEnabled`, `assignable`, `render_as`, `settings`, `viewPath`, `class`) VALUES
+  (1, 'Image', 'Image', 1, 0, 'Images. PNG, JPG, BMP, GIF', 'forms/image.gif', 1, 'jpg,jpeg,png,bmp,gif', 1, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\Image'),
+  (2, 'Video', 'Video', 1, 0, 'Videos - support varies depending on the client hardware you are using.', 'forms/video.gif', 1, 'wmv,avi,mpg,mpeg,webm,mp4', 0, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\Video'),
+  (3, 'Flash', 'Flash', 1, 0, 'Flash', 'forms/flash.gif', 1, 'swf', 1, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\Flash'),
+  (4, 'PowerPoint', 'PowerPoint', 1, 0, 'Powerpoint. PPT, PPS', 'forms/powerpoint.gif', 1, 'ppt,pps,pptx', 1, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\PowerPoint'),
+  (5, 'Webpage', 'Webpage', 1, 1, 'Webpages.', 'forms/webpage.gif', 1, NULL, 1, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\WebPage'),
+  (6, 'Ticker', 'Ticker', 1, 1, 'RSS Ticker.', 'forms/ticker.gif', 1, NULL, 1, 1, NULL, '[]', '../modules', 'Xibo\\Widget\\Ticker'),
+  (7, 'Text', 'Text', 1, 1, 'Text. With Directional Controls.', 'forms/text.gif', 1, NULL, 1, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\Text'),
+  (8, 'Embedded', 'Embedded', 1, 1, 'Embedded HTML', 'forms/webpage.gif', 1, NULL, 1, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\Embedded'),
+  (11, 'datasetview', 'Data Set', 1, 1, 'A view on a DataSet', 'forms/datasetview.gif', 1, NULL, 1, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\DataSetView'),
+  (12, 'shellcommand', 'Shell Command', 1, 1, 'Execute a shell command on the client', 'forms/shellcommand.gif', 1, NULL, 1, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\ShellCommand'),
+  (13, 'localvideo', 'Local Video', 1, 1, 'Play a video locally stored on the client', 'forms/video.gif', 1, NULL, 0, 1, NULL, NULL, '../modules', 'Xibo\\Widget\\LocalVideo'),
+  (14, 'genericfile', 'Generic File', 1, 0, 'A generic file to be stored in the library', 'forms/library.gif', 1, 'apk,js,html,htm', 0, 0, NULL, NULL, '../modules', 'Xibo\\Widget\\GenericFile'),
+  (15, 'clock', 'Clock', 1, 1, '', 'forms/library.gif', 1, NULL, 1, 1, 'html', '[]', '../modules', 'Xibo\\Widget\\Clock'),
+  (16, 'font', 'Font', 1, 0, 'A font to use in other Modules', 'forms/library.gif', 1, 'ttf,otf,eot,svg,woff', 0, 0, NULL, NULL, '../modules', 'Xibo\\Widget\\Font');
 
-INSERT INTO `module` (`ModuleID`, `Module`, `Name`, `Enabled`, `RegionSpecific`, `Description`, `ImageUri`, `SchemaVersion`, `ValidExtensions`, `PreviewEnabled`, `assignable`, `render_as`, `settings`) VALUES
-(1, 'Image', 'Image', 1, 0, 'Images. PNG, JPG, BMP, GIF', 'forms/image.gif', 1, 'jpg,jpeg,png,bmp,gif', 1, 1, NULL, NULL),
-(2, 'Video', 'Video', 1, 0, 'Videos - support varies depending on the client hardware you are using.', 'forms/video.gif', 1, 'wmv,avi,mpg,mpeg,webm,mp4', 1, 1, NULL, NULL),
-(3, 'Flash', 'Flash', 1, 0, 'Flash', 'forms/flash.gif', 1, 'swf', 1, 1, NULL, NULL),
-(4, 'PowerPoint', 'PowerPoint', 1, 0, 'Powerpoint. PPT, PPS', 'forms/powerpoint.gif', 1, 'ppt,pps,pptx', 1, 1, NULL, NULL),
-(5, 'Webpage', 'Webpage', 1, 1, 'Webpages.', 'forms/webpage.gif', 1, NULL, 1, 1, NULL, NULL),
-(6, 'Ticker', 'Ticker', 1, 1, 'RSS Ticker.', 'forms/ticker.gif', 1, NULL, 1, 1, NULL, '[]'),
-(7, 'Text', 'Text', 1, 1, 'Text. With Directional Controls.', 'forms/text.gif', 1, NULL, 1, 1, NULL, NULL),
-(8, 'Embedded', 'Embedded', 1, 1, 'Embedded HTML', 'forms/webpage.gif', 1, NULL, 1, 1, NULL, NULL),
-(10, 'Counter', 'Counter', 0, 1, 'Customer Counter connected to a Remote Control', 'forms/counter.gif', 1, NULL, 1, 1, NULL, NULL),
-(11, 'datasetview', 'Data Set', 1, 1, 'A view on a DataSet', 'forms/datasetview.gif', 1, NULL, 1, 1, NULL, NULL),
-(12, 'shellcommand', 'Shell Command', 1, 1, 'Execute a shell command on the client', 'forms/shellcommand.gif', 1, NULL, 1, 1, NULL, NULL),
-(13, 'localvideo', 'Local Video', 1, 1, 'Play a video locally stored on the client', 'forms/video.gif', 1, NULL, 1, 1, NULL, NULL),
-(14, 'genericfile', 'Generic File', 1, 0, 'A generic file to be stored in the library', 'forms/library.gif', 1, 'apk,js,html,htm', 0, 0, NULL, NULL),
-(15, 'clock', 'Clock', 1, 1, 'Display a Clock', 'forms/library.gif', 1, NULL, 1, 1, 'html', NULL),
-(16, 'font', 'Font', 1, 0, 'A font to use in other Modules', 'forms/library.gif', 1, 'ttf,otf,eot,svg,woff', 0, 0, NULL, NULL);
-
-INSERT INTO `pagegroup` (`pagegroupID`, `pagegroup`) VALUES
-(1, 'Schedule'),
-(2, 'Homepage and Login'),
-(3, 'Layouts'),
-(4, 'Content'),
-(7, 'Displays'),
-(8, 'Users and Groups'),
-(9, 'Reports'),
-(10, 'License and Settings'),
-(11, 'Updates'),
-(12, 'Templates'),
-(13, 'Web Services'),
-(14, 'DataSets');
-
-INSERT INTO `pages` (`pageID`, `name`, `pagegroupID`) VALUES
-(1, 'dashboard', 2),
-(2, 'schedule', 1),
-(3, 'mediamanager', 2),
-(5, 'layout', 3),
-(7, 'content', 4),
-(11, 'display', 7),
-(12, 'update', 11),
-(14, 'admin', 10),
-(15, 'group', 8),
-(16, 'log', 9),
-(17, 'user', 8),
-(18, 'license', 10),
-(19, 'index', 2),
-(24, 'module', 4),
-(25, 'template', 3),
-(26, 'fault', 10),
-(27, 'stats', 9),
-(28, 'manual', 2),
-(29, 'resolution', 12),
-(30, 'help', 2),
-(31, 'clock', 2),
-(32, 'displaygroup', 7),
-(33, 'oauth', 13),
-(34, 'help', 2),
-(35, 'clock', 2),
-(36, 'dataset', 14),
-(37, 'campaign', 3),
-(38, 'transition', 4),
-(39, 'timeline', 3),
-(40, 'sessions', 9),
-(41, 'preview', 3),
-(42, 'statusdashboard', 2),
-(43, 'displayprofile', 7);
-
-INSERT INTO `menuitem` (`MenuItemID`, `MenuID`, `PageID`, `Args`, `Text`, `Class`, `Img`, `Sequence`, `External`) VALUES
-(1, 1, 2, NULL, 'Schedule', NULL, NULL, 1, 0),
-(2, 1, 5, NULL, 'Design', NULL, NULL, 2, 0),
-(3, 1, 7, NULL, 'Library', NULL, NULL, 3, 0),
-(4, 1, 17, NULL, 'Administration', NULL, NULL, 5, 0),
-(7, 7, 11, NULL, 'Displays', NULL, NULL, 1, 0),
-(8, 8, 15, NULL, 'User Groups', NULL, NULL, 2, 0),
-(9, 8, 17, NULL, 'Users', NULL, NULL, 1, 0),
-(10, 9, 16, NULL, 'Log', NULL, NULL, 1, 0),
-(11, 9, 18, NULL, 'About', NULL, NULL, 4, 0),
-(12, 9, 40, NULL, 'Sessions', NULL, NULL, 2, 0),
-(13, 8, 14, NULL, 'Settings', NULL, NULL, 3, 0),
-(14, 2, 2, 'sp=month', 'Schedule', 'schedule_button', 'dashboard/scheduleview.png', 1, 0),
-(15, 2, 5, NULL, 'Layouts', 'playlist_button', 'dashboard/presentations.png', 2, 0),
-(16, 2, 7, NULL, 'Library', 'content_button', 'dashboard/content.png', 3, 0),
-(17, 2, 25, NULL, 'Templates', 'layout_button', 'dashboard/layouts.png', 4, 0),
-(18, 2, 17, NULL, 'Users', 'user_button', 'dashboard/users.png', 5, 0),
-(19, 2, 14, NULL, 'Settings', 'settings_button', 'dashboard/settings.png', 6, 0),
-(20, 2, 18, NULL, 'About', 'license_button', 'dashboard/license.png', 7, 0),
-(22, 9, 26, NULL, 'Report Fault', NULL, NULL, 3, 0),
-(23, 7, 27, NULL, 'Statistics', NULL, NULL, 3, 0),
-(24, 2, 28, 'manual/index.php', 'Manual', 'help_button', 'dashboard/help.png', 10, 1),
-(25, 6, 29, NULL, 'Resolutions', NULL, NULL, 4, 0),
-(26, 6, 25, NULL, 'Templates', NULL, NULL, 3, 0),
-(27, 7, 32, NULL, 'Display Groups', NULL, NULL, 2, 0),
-(28, 8, 33, NULL, 'Applications', NULL, NULL, 4, 0),
-(29, 5, 36, NULL, 'DataSets', NULL, NULL, 2, 0),
-(30, 5, 7, NULL, 'Media', NULL, NULL, 1, 0),
-(33, 6, 5, NULL, 'Layouts', NULL, NULL, 2, 0),
-(34, 1, 11, NULL, 'Displays', NULL, NULL, 4, 0),
-(35, 1, 16, NULL, 'Advanced', NULL, NULL, 6, 0),
-(36, 8, 24, NULL, 'Modules', NULL, NULL, 5, 0),
-(37, 6, 37, NULL, 'Campaigns', NULL, NULL, 1, 0),
-(38, 8, 38, NULL, 'Transitions', NULL, NULL, 6, 0),
-(39, 9, 30, NULL, 'Help Links', NULL, NULL, 6, 0),
-(40, 7, 43, NULL, 'Display Settings', NULL, NULL, 4, 0);
+INSERT INTO `pages` (`pageID`, `name`, `title`, `asHome`) VALUES
+  (1, 'dashboard', 'Dashboard', 1),
+  (2, 'schedule', 'Schedule', 1),
+  (3, 'mediamanager', 'Media Dashboard', 1),
+  (4, 'layout', 'Layout', 1),
+  (5, 'library', 'Library', 1),
+  (6, 'display', 'Displays', 1),
+  (7, 'update', 'Update', 0),
+  (8, 'admin', 'Administration', 0),
+  (9, 'group', 'User Groups', 1),
+  (10, 'log', 'Log', 1),
+  (11, 'user', 'Users', 1),
+  (12, 'license', 'Licence', 1),
+  (13, 'index', 'Home', 0),
+  (14, 'module', 'Modules', 1),
+  (15, 'template', 'Templates', 1),
+  (16, 'fault', 'Report Fault', 1),
+  (17, 'stats', 'Statistics', 1),
+  (18, 'manual', 'Manual', 0),
+  (19, 'resolution', 'Resolutions', 1),
+  (20, 'help', 'Help Links', 1),
+  (21, 'clock', 'Clock', 0),
+  (22, 'displaygroup', 'Display Groups', 1),
+  (23, 'application', 'Applications', 1),
+  (24, 'dataset', 'DataSets', 1),
+  (25, 'campaign', 'Campaigns', 1),
+  (26, 'transition', 'Transitions', 1),
+  (27, 'sessions', 'Sessions', 1),
+  (28, 'preview', 'Preview', 0),
+  (29, 'statusdashboard', 'Status Dashboard', 1),
+  (30, 'displayprofile', 'Display Profiles', 1),
+  (31, 'auditlog', 'Audit Trail', 1),
+  (32, 'region', 'Regions', 0),
+  (33, 'playlist', 'Playlist', 0),
+  (34, 'audit', 'Audit', 0),
+  (35, 'maintenance', 'Maintenance', 0);
 
 
 INSERT INTO `resolution` (`resolutionID`, `resolution`, `width`, `height`, `intended_width`, `intended_height`, `version`, `enabled`) VALUES
@@ -211,8 +152,8 @@ INSERT INTO `resolution` (`resolutionID`, `resolution`, `width`, `height`, `inte
 (14, 'Common PC Monitor 4:3', 800, 600, 1024, 768, 2, 1);
 
 INSERT INTO `setting` (`settingid`, `setting`, `value`, `fieldType`, `helptext`, `options`, `cat`, `userChange`, `title`, `validation`, `ordering`, `default`, `userSee`, `type`) VALUES
-(1, 'MEDIA_DEFAULT', 'private', 'dropdown', 'Media will be created with these settings. If public everyone will be able to view and use this media.', 'private|public', 'permissions', 1, 'Media Permissions', '', 20, 'private', 1, 'word'),
-(2, 'LAYOUT_DEFAULT', 'private', 'dropdown', 'New layouts will be created with these settings. If public everyone will be able to view and use this layout.', 'private|public', 'permissions', 1, 'Layout Permissions', '', 10, 'private', 1, 'word'),
+(1, 'MEDIA_DEFAULT', 'private', 'dropdown', 'Media will be created with these settings. If public everyone will be able to view and use this media.', 'private|group|public', 'permissions', 1, 'Media Permissions', '', 20, 'private', 1, 'word'),
+(2, 'LAYOUT_DEFAULT', 'private', 'dropdown', 'New layouts will be created with these settings. If public everyone will be able to view and use this layout.', 'private|group|public', 'permissions', 1, 'Layout Permissions', '', 10, 'private', 1, 'word'),
 (3, 'defaultUsertype', 'User', 'dropdown', 'Sets the default user type selected when creating a user.\r\n<br />\r\nWe recommend that this is set to "User"', 'User|Group Admin|Super Admin', 'users', 1, 'Default User Type', '', 10, 'User', 1, 'string'),
 (7, 'userModule', 'module_user_general.php', 'dirselect', 'This sets which user authentication module is currently being used.', NULL, 'users', 0, 'User Module', '', 0, 'module_user_general.php', 0, 'string'),
 (11, 'defaultTimezone', 'Europe/London', 'timezone', 'Set the default timezone for the application', 'Europe/London', 'regional', 1, 'Timezone', '', 20, 'Europe/London', 1, 'string'),
@@ -221,7 +162,7 @@ INSERT INTO `setting` (`settingid`, `setting`, `value`, `fieldType`, `helptext`,
 (23, 'jpg_length', '10', 'number', 'Default length for JPG files (in seconds)', NULL, 'content', 1, 'Default Image Duration', '', 30, '10', 1, 'int'),
 (26, 'ppt_length', '10', 'number', 'Default length for PPT files (in seconds)', NULL, 'content', 1, 'Default PowerPoint Duration', '', 10, '10', 1, 'int'),
 (29, 'swf_length', '10', 'number', 'Default length for SWF files', NULL, 'content', 1, 'Default Flash Duration', '', 20, '10', 1, 'int'),
-(30, 'audit', 'error', 'dropdown', 'Set the level of logging the CMS should record. In production systems "error" is recommended.', 'error|info|audit|off', 'troubleshooting', 1, 'Log Level', '', 20, 'error', 1, 'word'),
+(30, 'audit', 'Error', 'dropdown', 'Set the level of logging the CMS should record. In production systems "error" is recommended.', 'Emergency|Alert|Critical|Error|Warning|Notice|Info|Debug', 'troubleshooting', 1, 'Log Level', '', 20, 'error', 1, 'word'),
 (33, 'LIBRARY_LOCATION', '', 'text', 'The fully qualified path to the CMS library location.', NULL, 'configuration', 1, 'Library Location', 'required', 10, '', 1, 'string'),
 (34, 'SERVER_KEY', '', 'text', NULL, NULL, 'configuration', 1, 'CMS Secret Key', 'required', 20, '', 1, 'string'),
 (35, 'HELP_BASE', 'http://www.xibo.org.uk/manual/en/', 'text', NULL, NULL, 'general', 1, 'Location of the Manual', 'required', 10, 'http://www.xibo.org.uk/manual/', 1, 'string'),
@@ -273,45 +214,20 @@ INSERT INTO `setting` (`settingid`, `setting`, `value`, `fieldType`, `helptext`,
 (81, 'CALENDAR_TYPE', 'Gregorian', 'dropdown', 'Which Calendar Type should the CMS use?', 'Gregorian|Jalali', 'regional', 1, 'Calendar Type', '', 50, 'Gregorian', 1, 'string'),
 (82, 'DASHBOARD_LATEST_NEWS_ENABLED', '1', 'checkbox', 'Should the Dashboard show latest news? The address is provided by the theme.', '', 'general', 1, 'Enable Latest News?', '', 110, '1', 1, 'checkbox'),
 (83, 'LIBRARY_MEDIA_DELETEOLDVER_CHECKB','Unchecked','dropdown','Default the checkbox for Deleting Old Version of media when a new file is being uploaded to the library.','Checked|Unchecked','defaults',1,'Default for "Delete old version of Media" checkbox. Shown when Editing Library Media.', '', 50, 'Unchecked', 1, 'dropdown'),
-(84, 'USE_INTL_DATEFORMAT', '0', 'checkbox', 'Should dates be internationalised where possible.', '', 'regional', 1, 'Show international dates?', '', 60, '0', 1, 'checkbox'),
-(85, 'PROXY_EXCEPTIONS', '', 'text', 'Hosts and Keywords that should not be loaded via the Proxy Specified. These should be comma separated.', '', 'network', 1, 'Proxy Exceptions', '', 32, '', 1, 'text');
+(84, 'PROXY_EXCEPTIONS', '', 'text', 'Hosts and Keywords that should not be loaded via the Proxy Specified. These should be comma separated.', '', 'network', 1, 'Proxy Exceptions', '', 32, '', 1, 'text'),
+(85, 'INSTANCE_SUSPENDED', '0', 'checkbox', 'Is this instance suspended?', NULL, 'general', 0, 'Instance Suspended', '', 120, '0', 0, 'checkbox'),
+(86, 'INHERIT_PARENT_PERMISSIONS', '1', 'checkbox', 'Inherit permissions from Parent when adding a new item?', NULL, 'permissions', 1, 'Inherit permissions', '', 50, '1', 1, 'checkbox');
 
 INSERT INTO `usertype` (`usertypeid`, `usertype`) VALUES
 (1, 'Super Admin'),
 (2, 'Group Admin'),
 (3, 'User');
 
-INSERT INTO `user` (`UserID`, `usertypeid`, `UserName`, `UserPassword`, `loggedin`, `lastaccessed`, `email`, `homepage`, `Retired`) VALUES
-(1, 1, 'xibo_admin', '21232f297a57a5a743894a0e4a801fc3', 1, NOW(), '', 'statusdashboard', 0);
-
-INSERT INTO `lkmenuitemgroup` (`LkMenuItemGroupID`, `GroupID`, `MenuItemID`) VALUES
-(1, 1, 33),
-(2, 1, 14),
-(3, 1, 15),
-(4, 1, 16),
-(5, 1, 20),
-(6, 1, 24),
-(7, 1, 1),
-(8, 1, 2),
-(9, 1, 3),
-(10, 1, 29),
-(11, 1, 30),
-(12, 1, 26);
-
-INSERT INTO `lkpagegroup` (`lkpagegroupID`, `pageID`, `groupID`) VALUES
-(1, 2, 1),
-(2, 1, 1),
-(3, 3, 1),
-(4, 19, 1),
-(5, 5, 1),
-(6, 7, 1),
-(7, 24, 1),
-(8, 39, 1),
-(9, 41, 1),
-(10, 42, 1);
+INSERT INTO `user` (`UserID`, `usertypeid`, `UserName`, `UserPassword`, `loggedin`, `lastaccessed`, `email`, `homepageId`, `Retired`) VALUES
+(1, 1, 'xibo_admin', '21232f297a57a5a743894a0e4a801fc3', 1, NOW(), '', 29, 0);
 
 INSERT INTO `lkusergroup` (`LkUserGroupID`, `GroupID`, `UserID`) VALUES
-(10, 3, 1);
+(1, 3, 1);
 
 INSERT INTO `transition` (`TransitionID`, `Transition`, `Code`, `HasDuration`, `HasDirection`, `AvailableAsIn`, `AvailableAsOut`) VALUES
 (1, 'Fade In', 'fadeIn', 1, 0, 0, 0),
@@ -322,7 +238,8 @@ INSERT INTO `datatype` (`DataTypeID`, `DataType`) VALUES
 (1, 'String'),
 (2, 'Number'),
 (3, 'Date'),
-(4, 'Image');
+(4, 'External Image'),
+(5, 'Library Image');
 
 INSERT INTO `datasetcolumntype` (`DataSetColumnTypeID`, `DataSetColumnType`) VALUES
 (1, 'Value'),
@@ -349,3 +266,14 @@ INSERT INTO `tag` (`tagId`, `tag`) VALUES
 
 INSERT INTO `displayprofile` (`name`, `type`, `config`, `isdefault`, `userid`)
 VALUES ('Windows', 'windows', '[]', '1', '1'), ('Android', 'android', '[]', '1', '1');
+
+INSERT INTO `permissionentity` (`entityId`, `entity`) VALUES
+(1, 'Xibo\\Entity\\Page'),
+(2, 'Xibo\\Entity\\Menu'),
+(3, 'Xibo\\Entity\\DisplayGroup'),
+(4, 'Xibo\\Entity\\Media'),
+(5, 'Xibo\\Entity\\Campaign'),
+(6, 'Xibo\\Entity\\Widget'),
+(7, 'Xibo\\Entity\\Region'),
+(8, 'Xibo\\Entity\\Playlist'),
+(9, 'Xibo\\Entity\\DataSet');

@@ -1,6 +1,9 @@
+library/
+vendor/
 settings.php
 .project/
 .vagrant/
 .idea/
 library/
-vendor/
+cache/
+modules/fonts.css
